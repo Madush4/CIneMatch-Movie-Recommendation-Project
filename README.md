@@ -1,7 +1,7 @@
 CineMatch – Find Your Perfect Movie Tonight
 
-CineMatch is a modern movie recommendation web application that helps users discover movies based on their mood, age range, and preferences.
-The project focuses on clean UI design, smooth user experience, and practical frontend logic using HTML, Tailwind CSS, and JavaScript.
+ CineMatch is a modern movie recommendation web application that helps users discover movies based on their mood, age range, and preferences.
+ The project focuses on clean UI design, smooth user experience, and practical frontend logic using HTML, Tailwind CSS, and JavaScript.
 
 Features
 
