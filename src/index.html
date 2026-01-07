@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CineMatch</title>
+    <link rel="stylesheet" href="output.css" />
+    <style id="theme-styles">
+      /* Smooth transitions */
+      body,
+      nav,
+      h1,
+      .text-gray-800,
+      .text-gray-500,
+      .text-rose-500 {
+        transition: background-color 0.4s ease, color 0.4s ease;
+      }
+
+      /* Light mode (default) */
+      body {
+        background-color: white;
+        color: oklch(27.8% 0.033 256.848);
+      }
+
+      nav {
+        background-color: white;
+      }
+
+      /* Dark mode */
+      .dark body {
+        background-color: #1a1a1a;
+        color: white;
+      }
+
+      .dark nav {
+        background-color: #1a1a1a;
+      }
+
+      .dark h1,
+      .dark .text-gray-800 {
+        color: oklch(92.8% 0.006 264.531) !important;
+      }
+
+      .dark .text-gray-500 {
+        color: oklch(70.7% 0.022 261.325) !important;
+      }
+
+      .dark .text-rose-500 {
+        color: oklch(71.2% 0.194 13.428) !important;
+      }
+
+      /* Dark mode utilities for forms */
+      .dark .dark\:bg-gray-800 {
+        background-color: oklch(27.8% 0.033 256.848);
+      }
+
+      .dark .dark\:bg-gray-700 {
+        background-color: oklch(35% 0.03 260);
+      }
+
+      .dark .dark\:text-gray-200 {
+        color: oklch(92.8% 0.006 264.531);
+      }
+
+      .dark .dark\:text-white {
+        color: white;
+      }
+
+      /* Toggle Switch Styles */
+      .theme-switch {
+        position: relative;
+        display: inline-block;
+        width: 70px;
+        height: 36px;
+        cursor: pointer;
+      }
+
+      .theme-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: oklch(87.2% 0.01 258.338);
+        border-radius: 34px;
+        transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      .dark .slider {
+        background-color: oklch(55.1% 0.027 264.364);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 28px;
+        width: 28px;
+        left: 4px;
+        bottom: 4px;
+        background-color: oklch(27.8% 0.033 256.848);
+        border-radius: 50%;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+          background-color 0.4s ease;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      }
+
+      .dark .slider:before {
+        background-color: white;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      .slider-icon {
+        position: absolute;
+        top: 50%;
+        left: 8px;
+        transform: translateY(-50%) translateX(0);
+        font-size: 18px;
+        z-index: 10;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(34px);
+      }
+
+      input:checked + .slider .slider-icon {
+        transform: translateY(-50%) translateX(34px);
+      }
+
+      .slider:hover {
+        background-color: oklch(92.8% 0.006 264.531);
+      }
+
+      .dark .slider:hover {
+        background-color: oklch(70.7% 0.022 261.325);
+      }
+    </style>
+  </head>
+  <body class="p-2">
+    <nav
+      class="relative after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-white/10 mb-10"
+    >
+      <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div class="relative flex h-16 items-center justify-between">
+          <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <!-- Mobile menu button-->
+            <button
+              type="button"
+              command="--toggle"
+              commandfor="mobile-menu"
+              class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-800 dark:text-white hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500"
+            >
+              <span class="absolute -inset-0.5"></span>
+              <span class="sr-only">Open main menu</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                data-slot="icon"
+                aria-hidden="true"
+                class="size-6 in-aria-expanded:hidden"
+              >
+                <path
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                data-slot="icon"
+                aria-hidden="true"
+                class="size-6 not-in-aria-expanded:hidden"
+              >
+                <path
+                  d="M6 18 18 6M6 6l12 12"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+          <div
+            class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
+          >
+            <div class="flex shrink-0 items-center">
+              <div class="p-1 flex items-center">
+                <img
+                  src="./logo/cineMatch_2.png"
+                  alt="CineMatch Logo"
+                  class="h-8 w-auto mr-2"
+                />
+                <span
+                  class="font-bold font-sans text-rose-500 dark:text-rose-400 hidden sm:block"
+                  >CineMatch</span
+                >
+              </div>
+            </div>
+            <div class="hidden sm:ml-6 sm:block">
+              <div class="flex space-x-4">
+                <a
+                  href="#"
+                  class="rounded-md px-3 py-2 text-sm font-bold text-black dark:text-gray-200 hover:bg-white/5"
+                  >Home</a
+                >
+
+                <a
+                  href="#"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-gray-800 dark:text-gray-200 hover:bg-white/5"
+                  >Discover</a
+                >
+
+                <a
+                  href="#"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-gray-800 dark:text-gray-200 hover:bg-white/5"
+                  >Trending</a
+                >
+
+                <a
+                  href="#"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-gray-800 dark:text-gray-200 hover:bg-white/5"
+                  >Favourite</a
+                >
+
+                <a
+                  href="#"
+                  class="rounded-md px-3 py-2 text-sm font-medium text-gray-800 dark:text-gray-200 hover:bg-white/5"
+                  >About</a
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+          >
+            <button
+              type="button"
+              class="relative rounded-full p-1 text-gray-400 dark:text-gray-500 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500 mr-2"
+            >
+              <span class="absolute -inset-1.5"></span>
+              <span class="sr-only">View notifications</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                data-slot="icon"
+                aria-hidden="true"
+                class="size-6"
+              >
+                <path
+                  d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+
+            <label class="theme-switch" for="theme-toggle">
+              <input type="checkbox" id="theme-toggle" />
+              <span class="slider">
+                <span class="slider-icon">🌙</span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <el-disclosure id="mobile-menu" hidden class="block sm:hidden">
+        <div class="space-y-1 px-2 pt-2 pb-3">
+          <a
+            href="#"
+            aria-current="page"
+            class="block rounded-md bg-gray-950/50 px-3 py-2 text-base font-medium text-white dark:text-white"
+            >Discover</a
+          >
+
+          <a
+            href="#"
+            class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 dark:text-gray-400 hover:bg-white/5 hover:text-white"
+            >Trending</a
+          >
+
+          <a
+            href="#"
+            class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 dark:text-gray-400 hover:bg-white/5 hover:text-white"
+            >Favourites</a
+          >
+
+          <a
+            href="#"
+            class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 dark:text-gray-400 hover:bg-white/5 hover:text-white"
+            >About</a
+          >
+        </div>
+      </el-disclosure>
+    </nav>
+
+    <div class="text-center">
+      <h1
+        class="p-4 sm:text-6xl text-5xl font-mono font-bold text-gray-800 mb-4"
+      >
+        Find Your
+        <span class="text-rose-500 dark:text-rose-400">Perfect Movie</span>
+        Tonight
+      </h1>
+      <p class="text-gray-500 dark:text-gray-400 font-medium mb-10">
+        Tell us how you're feeling, and we'll recommend the perfect film
+        tailored to your mood and age.
+      </p>
+    </div>
+
+    <div class="flex justify-center shadow-md p-8">
+      <div class="grid grid-cols-2 gap-6 w-full max-w-4xl">
+        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+          <label
+            for="age"
+            class="block text-gray-800 dark:text-gray-200 font-medium mb-2"
+          >
+            Your age
+          </label>
+          <!-- Add your input here -->
+        </div>
+        <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+          <label
+            for="genre"
+            class="block text-gray-800 dark:text-gray-200 font-medium mb-2"
+          >
+            Genre
+          </label>
+          <!-- Add your input here -->
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1"
+      type="module"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>
