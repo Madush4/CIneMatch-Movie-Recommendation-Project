@@ -1,125 +1,109 @@
-CineMatch – Find Your Perfect Movie Tonight
+# CineMatch – Find Your Perfect Movie Tonight
 
- CineMatch is a modern movie recommendation web application that helps users discover movies based on their mood, age range, and preferences.
- The project focuses on clean UI design, smooth user experience, and practical frontend logic using HTML, Tailwind CSS, and JavaScript.
+CineMatch is a modern movie recommendation web application that helps users discover movies based on their mood, age range, and preferences.
+The project focuses on clean UI design, smooth user experience, and practical frontend logic using HTML, Tailwind CSS, and JavaScript.
 
-Features
+---
 
-Mood-based movie recommendations
+## Features
 
-Age-range filtering (privacy-friendly, no exact age required)
+- Mood-based movie recommendations
+- Age-range filtering (privacy-friendly, no exact age required)
+- Dark and light mode toggle
+- Fully responsive design
+- Movie data fetched from a public movie API
+- Clean and modern UI built with Tailwind CSS
 
-Dark and light mode toggle
+---
 
-Fully responsive design
+## How CineMatch Works
 
-Movie data fetched from a public movie API
-
-Clean and modern UI built with Tailwind CSS
-
-How CineMatch Works
-
-The user selects their mood
-
-The user chooses an age range
-
-The user optionally selects a preferred genre
-
-CineMatch maps the selected mood to suitable genres
-
-Movies are filtered based on age range and content rating
-
-Recommended movies are displayed dynamically
+1. The user selects their **mood**
+2. The user chooses an **age range**
+3. The user optionally selects a preferred **genre**
+4. CineMatch maps the selected mood to suitable genres
+5. Movies are filtered based on **age range** and **content rating**
+6. Recommended movies are displayed dynamically
 
 This approach avoids complex machine learning and focuses on solid frontend logic.
 
-User Inputs
-Mood
+---
 
-Happy
+## User Inputs
 
-Sad
+**Mood**
+- Happy
+- Sad
+- Relaxed
+- Excited
+- Romantic
 
-Relaxed
+**Age Range**
+- Under 13
+- 13–17
+- 18–24
+- 25–39
+- 40+
 
-Excited
+**Genre (Optional)**
+- Action
+- Comedy
+- Drama
+- Horror
+- Romance
+- Sci-Fi
 
-Romantic
+---
 
-Age Range
+## Navigation Structure
 
-Under 13
+- Home – Introduction and call-to-action
+- Discover – Main recommendation feature
+- Trending – Popular movies fetched from the API
+- About – Project overview and technology stack
 
-13–17
+---
 
-18–24
+## Tech Stack
 
-25–39
+- HTML5
+- Tailwind CSS
+- JavaScript (ES6)
+- Public Movie API (TMDB / OMDb)
+- LocalStorage (for theme and preferences)
 
-40+
+---
 
-Genre (Optional)
+## Why This Project
 
-Action
+CineMatch was built as an intermediate frontend project to strengthen real-world web development skills, including:
 
-Comedy
+- Responsive UI design
+- API integration
+- State handling
+- Theme management
 
-Drama
+---
 
-Horror
+## Future Improvements
 
-Romance
+- User authentication
+- Favorites and watchlist feature
+- Advanced filtering options
+- Improved accessibility
+- Better error handling for API requests
 
-Sci-Fi
+---
 
-Navigation Structure
+## Getting Started
 
-Home – Introduction and call-to-action
+1. Clone the repository
+2. Install dependencies
+3. Build Tailwind CSS
+4. Open the project in a browser
 
-Discover – Main recommendation feature
+---
 
-Trending – Popular movies fetched from the API
-
-About – Project overview and technology stack
-
-Tech Stack
-
-HTML5
-
-Tailwind CSS
-
-JavaScript (ES6)
-
-Public Movie API (TMDB / OMDb)
-
-LocalStorage (for theme and preferences)
-
-Why This Project
-
-CineMatch was built as an intermediate frontend project to strengthen real-world web development skills, including responsive UI design, API integration, state handling, and theme management.
-
-Future Improvements
-
-User authentication
-
-Favorites and watchlist feature
-
-Advanced filtering options
-
-Improved accessibility
-
-Better error handling for API requests
-
-Getting Started
-
-Clone the repository
-
-Install dependencies
-
-Build Tailwind CSS
-
-Open the project in a browser
-
-License
+## License
 
 This project is open source and available for learning and educational purposes.
