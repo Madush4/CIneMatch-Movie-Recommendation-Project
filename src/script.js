@@ -8,11 +8,11 @@ function applyTheme(theme) {
   if (theme === "dark") {
     htmlElement.classList.add("dark");
     toggleInput.checked = true;
-    sliderIcon.textContent = "☀️";
+    sliderIcon.textContent = "🌙";
   } else {
     htmlElement.classList.remove("dark");
     toggleInput.checked = false;
-    sliderIcon.textContent = "🌙";
+    sliderIcon.textContent = "☀️";
   }
   localStorage.setItem("theme", theme);
 }
