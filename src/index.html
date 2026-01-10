@@ -6,9 +6,13 @@
     <title>CineMatch</title>
     <link rel="stylesheet" href="./output.css" />
     <style id="theme-styles">
-      /* Smooth transitions for everything */
-      * {
-        transition: background-color 0.3s ease, color 0.3s ease;
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body,
+      nav {
+        transition: background-color 0.3s ease-in-out, color 0.3s ease;
       }
 
       /* Toggle Switch Styles ONLY - No body/nav/text overrides! */
@@ -50,7 +54,7 @@
         width: 28px;
         left: 4px;
         bottom: 4px;
-        background-color: oklch(27.8% 0.033 256.848);
+        background-color: white;
         border-radius: 50%;
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
           background-color 0.4s ease;
@@ -58,7 +62,7 @@
       }
 
       .dark .slider:before {
-        background-color: white;
+        background-color: oklch(27.8% 0.033 256.848);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
       }
 
@@ -98,13 +102,49 @@
           transparent
         );
       }
+
+      .btn-shimmer {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(90deg, #f43f5e, #ec4899);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .dark .btn-shimmer {
+        background: linear-gradient(90deg, #374151, #4b5563);
+      }
+
+      /* Silver ray that sweeps across */
+      .btn-shimmer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.7s ease;
+      }
+
+      .btn-shimmer:hover::before {
+        left: 100%;
+      }
+
+      .btn-shimmer:hover {
+        transform: translateY(-2px);
+      }
     </style>
   </head>
   <body
-    class="p-2 bg-gray-200 dark:bg-gray-900 dark:text-white transition-colors duration-300"
+    class="p-2 bg-gray-200 dark:bg-gray-950 dark:text-white transition-colors duration-300"
   >
     <nav
-      class="relative bg-gray-200 dark:bg-gray-900 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-gray-300 dark:after:bg-white/10 mb-10 transition-colors duration-300"
+      class="relative bg-gray-200 dark:bg-gray-950 after:pointer-events-none after:absolute after:inset-x-0 after:bottom-0 after:h-px after:bg-gray-300 dark:after:bg-white/10 mb-10 transition-colors duration-300"
     >
       <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
@@ -175,7 +215,7 @@
                 >
 
                 <a
-                  href="#"
+                  href="#discover"
                   class="rounded-md px-3 py-2 text-sm font-bold text-gray-800 dark:text-gray-200 hover:bg-white/5"
                   >Discover</a
                 >
@@ -239,9 +279,9 @@
       <el-disclosure id="mobile-menu" hidden class="block sm:hidden">
         <div class="space-y-1 px-2 pt-2 pb-3">
           <a
-            href="#"
+            href="#discover"
             aria-current="page"
-            class="block rounded-md bg-gray-950/50 px-3 py-2 text-base font-medium text-white dark:text-white"
+            class="block rounded-md bg-gray-500/50 dark:bg-gray-950/50 px-3 py-2 text-base font-medium text-black dark:text-white"
             >Discover</a
           >
 
@@ -268,7 +308,7 @@
 
     <div class="text-center">
       <h1
-        class="p-4 sm:text-6xl text-5xl font-mono font-bold text-gray-800 dark:text-white mb-4 transition-colors duration-1000"
+        class="p-4 sm:text-6xl text-5xl font-mono font-bold text-gray-800 dark:text-white mb-4 transition-colors duration-500"
       >
         Find Your
         <span class="text-rose-500 dark:text-rose-400">Perfect Movie</span>
@@ -280,130 +320,190 @@
       </p>
     </div>
 
-    <div class="flex justify-center p-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-5xl bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden" >
-        <div class="p-6">
+    <div class="flex justify-center p-9">
+      <div
+        class="group grid grid-cols-1 gap-6 w-full max-w-5xl rounded-3xl shadow-sm overflow-hidden p-6 relative bg-white dark:bg-gray-900 transition-all ease-in duration-500"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-rose-50 to-rose-100 dark:from-gray-800/50 dark:to-gray-700/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"
+        ></div>
+
+        <div class="p-6 col-span-2 relative z-10">
           <label
             for="age"
-            class="block text-gray-800 dark:text-gray-200 font-bold mb-4"
+            class="block text-gray-800 dark:text-gray-200 font-bold mb-7 text-lg sm:text-xl text-center md:text-start"
           >
             Your age
           </label>
-          <select
-            name="age"
-            id="ageRange"
-            class="w-full rounded-lg border bg-white text-gray-800 dark:bg-gray-700 dark:text- dark:border-gray-600 px-3 py-2 focus:outline-none focus:ring-1"
-          >
-            <option value="">Select your age range</option>
-            <option value="10-18">10-18</option>
-            <option value="10-18">18-30</option>
-            <option value="10-18">30-50</option>
-            <option value="10-18">50-100</option>
-          </select>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <button
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
+            >
+              10 - 17
+            </button>
+            <button
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer focus:bg-green-300"
+            >
+              18 - 30
+            </button>
+            <button
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
+            >
+              30 - 50
+            </button>
+            <button
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
+            >
+              50 - 100
+            </button>
+          </div>
         </div>
-        <div class=" p-6 ">
+        <div class="p-6 col-span-2 relative z-10">
           <label
             for="genre"
-            class="block text-gray-800 dark:text-gray-200 font-bold mb-4"
+            class="block text-gray-800 dark:text-gray-200 font-bold mb-7 text-lg sm:text-xl text-center md:text-start"
           >
             Genre
           </label>
 
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-5xl">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-5xl">
             <button
-              class="text-xs md:text-sm font-medium bg-gray-300 px-2 py-2 rounded-lg truncate"
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
               Action
             </button>
 
             <button
-              class="text-xs md:text-sm font-medium bg-gray-300 px-2 py-2 rounded-lg truncate"
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
               Adventure
             </button>
 
             <button
-              class="text-xs md:text-sm font-medium bg-gray-300 px-2 py-2 rounded-lg truncate"
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
               Animation
             </button>
 
             <button
-              class="text-xs md:text-sm font-medium bg-gray-300 px-2 py-2 rounded-lg truncate"
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
               Comedy
             </button>
 
             <button
-              class="text-xs md:text-sm font-medium bg-gray-300 px-2 py-2 rounded-lg truncate"
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
               Crime
             </button>
 
             <button
-              class="text-xs md:text-sm font-medium bg-gray-300 px-2 py-2 rounded-lg truncate"
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
               Horror
             </button>
             <button
-              class="text-xs md:text-sm font-medium bg-gray-300 px-2 py-2 rounded-lg truncate"
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
               Romance
             </button>
             <button
-              class="text-xs md:text-sm font-medium bg-gray-300 px-2 py-2 rounded-lg truncate"
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
               Sci-Fi
             </button>
           </div>
         </div>
 
-        <div class="col-span-2 text-center">
-          <label for="Mood" id="mood" class="font-bold block mb-4">Your Mood</label>
-          <div class="grid grid-cols-1 sm:grid-cols-4 max-w-full gap-3">
+        <div class="col-span-2 p-6 text-center relative z-10 mb-7">
+          <label
+            for="Mood"
+            id="mood"
+            class="font-bold block mb-7 text-lg sm:text-xl md:text-start"
+            >Your Mood</label
+          >
+          <div class="grid grid-cols-1 sm:grid-cols-4 max-w-full gap-4">
             <div
-              class="text-xs md:text-sm font-medium bg-gray-300 px-2 py-2 rounded-lg truncate"
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
               Happy
             </div>
             <div
-              class="text-xs md:text-sm font-medium bg-gray-300 px-2 py-2 rounded-lg truncate"
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
               Sad
             </div>
             <div
-              class="text-xs md:text-sm font-medium bg-gray-300 px-2 py-2 rounded-lg truncate"
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
               Adventurous
             </div>
             <div
-              class="text-xs md:text-sm font-medium bg-gray-300 px-2 py-2 rounded-lg truncate"
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
               Romantic
             </div>
             <div
-              class="text-xs md:text-sm font-medium bg-gray-300 px-2 py-2 rounded-lg truncate"
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
               Thoughtful
             </div>
             <div
-              class="text-xs md:text-sm font-medium bg-gray-300 px-2 py-2 rounded-lg truncate"
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
               Thrilled
             </div>
             <div
-              class="text-xs md:text-sm font-medium bg-gray-300 px-2 py-2 rounded-lg truncate"
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
               Motiavated
             </div>
             <div
-              class="text-xs md:text-sm font-medium bg-gray-300 px-2 py-2 rounded-lg truncate"
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
               Relax
             </div>
           </div>
         </div>
+        <div class="text-center col-span-2 px-6 mb-2">
+          <div class="w-full grid grid-col-1">
+            <button
+              class="btn-shimmer px-10 py-3 rounded-lg shadow-lg hover:shadow-xl text-white font-bold cursor-pointer relative z-10"
+            >
+              Trending Now
+            </button>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <div class="flex justify-center m-2">
+      <section id="discover" class="max-w-7xl">
+        <div class="relative mb-12">
+          <div class="absolute inset-0 flex items-center">
+            <div
+              class="flex-1 h-px bg-gradient-to-r from-transparent via-rose-500/30 to-rose-500/30"
+            ></div>
+            <div
+              class="flex-1 h-px bg-gradient-to-l from-transparent via-rose-500/30 to-rose-500/30"
+            ></div>
+          </div>
+          <div class="relative flex justify-center">
+            <span
+              class="bg-gray-200 dark:bg-gray-950 px-6 text-lg sm:text-3xl font-bold text-gray-800 dark:text-white"
+            >
+              Trending Now
+            </span>
+          </div>
+        </div>
+
+        <div
+          id="popularGrid"
+          class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 cursor-pointer"
+        >
+          <!-- I will inject movies here -->
+        </div>
+      </section>
     </div>
 
     <script
