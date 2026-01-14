@@ -201,7 +201,7 @@
                   class="h-8 w-auto mr-2"
                 />
                 <span
-                  class="font-bold font-sans text-rose-500 dark:text-rose-400 hidden sm:block"
+                  class="font-bold font-sans text-rose-500 dark:text-rose-400 hidden sm:block text-sm lg:text-lg"
                   >CineMatch</span
                 >
               </div>
@@ -210,31 +210,31 @@
               <div class="flex space-x-4">
                 <a
                   href="#"
-                  class="rounded-md px-3 py-2 text-sm font-bold text-black dark:text-gray-200 hover:bg-white/5"
+                  class="rounded-md px-3 py-2 text-sm lg:text-lg font-bold text-black dark:text-gray-200 hover:bg-white/5"
                   >Home</a
                 >
 
                 <a
                   href="#discover"
-                  class="rounded-md px-3 py-2 text-sm font-bold text-gray-800 dark:text-gray-200 hover:bg-white/5"
+                  class="rounded-md px-3 py-2 text-sm lg:text-lg font-bold text-gray-800 dark:text-gray-200 hover:bg-white/5"
                   >Discover</a
                 >
 
                 <a
-                  href="#"
-                  class="rounded-md px-3 py-2 text-sm font-bold text-gray-800 dark:text-gray-200 hover:bg-white/5"
+                  href="#trending"
+                  class="rounded-md px-3 py-2 text-sm lg:text-lg font-bold text-gray-800 dark:text-gray-200 hover:bg-white/5"
                   >Trending</a
                 >
 
                 <a
                   href="#"
-                  class="rounded-md px-3 py-2 text-sm font-bold text-gray-800 dark:text-gray-200 hover:bg-white/5"
+                  class="rounded-md px-3 py-2 text-sm lg:text-lg font-bold text-gray-800 dark:text-gray-200 hover:bg-white/5"
                   >Favourite</a
                 >
 
                 <a
                   href="#"
-                  class="rounded-md px-3 py-2 text-sm font-bold text-gray-800 dark:text-gray-200 hover:bg-white/5"
+                  class="rounded-md px-3 py-2 text-sm lg:text-lg font-bold text-gray-800 dark:text-gray-200 hover:bg-white/5"
                   >About</a
                 >
               </div>
@@ -286,7 +286,7 @@
           >
 
           <a
-            href="#"
+            href="#trending"
             class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 dark:text-gray-400 hover:bg-white/5 hover:text-white"
             >Trending</a
           >
@@ -339,22 +339,22 @@
             <button
               class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
-              10 - 17
-            </button>
-            <button
-              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer focus:bg-green-300"
-            >
-              18 - 30
+              UNDER 12
             </button>
             <button
               class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
-              30 - 50
+              13 - 17
             </button>
             <button
               class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
             >
-              50 - 100
+              18 - 39
+            </button>
+            <button
+              class="text-sm md:text-lg font-medium bg-gray-100 dark:bg-gray-800/70 hover:dark:bg-gray-700/80 px-2 py-2 rounded-lg truncate shadow-sm hover:-translate-y-1 transition-all ease-out duration-300 cursor-pointer"
+            >
+              40 +
             </button>
           </div>
         </div>
@@ -470,7 +470,7 @@
             <button
               class="btn-shimmer px-10 py-3 rounded-lg shadow-lg hover:shadow-xl text-white font-bold cursor-pointer relative z-10"
             >
-              Trending Now
+              Show Best Picks
             </button>
           </div>
         </div>
@@ -478,7 +478,7 @@
     </div>
 
     <div class="flex justify-center m-2">
-      <section id="discover" class="max-w-7xl">
+      <section id="trending" class="w-full px-4 md:px-6 lg:px-10">
         <div class="relative mb-12">
           <div class="absolute inset-0 flex items-center">
             <div
@@ -491,6 +491,7 @@
           <div class="relative flex justify-center">
             <span
               class="bg-gray-200 dark:bg-gray-950 px-6 text-lg sm:text-3xl font-bold text-gray-800 dark:text-white"
+              id="sectionTitle"
             >
               Trending Now
             </span>
@@ -499,7 +500,7 @@
 
         <div
           id="popularGrid"
-          class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 cursor-pointer"
+          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7 cursor-pointer w-full"
         >
           <!-- I will inject movies here -->
         </div>
